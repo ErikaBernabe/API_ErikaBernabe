@@ -16,4 +16,3 @@ Las API funcionan para conectar diferentes aplicaciones y servicios de manera qu
 4. **Acceso a Funcionalidades:** Permiten a los desarrolladores utilizar funciones complejas sin tener que crearlas desde cero. Por ejemplo, una API de procesamiento de pagos permite a los desarrolladores añadir una función de pago en línea a su aplicación sin tener que desarrollar un sistema de pagos desde cero.
 
 5. **Escalabilidad:** Ayudan a escalar servicios al permitir que se amplíen con nuevas funcionalidades sin tener que modificar la aplicación principal.
-
