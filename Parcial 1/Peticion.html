@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peticion</title>
+</head>
+<body>
+    <input type="text" id="pa">
+    <button id="btn">getPais</button>
+    <img src="" alt="" id="bandera">
+
+    <!-- <div id="nomPais"></div> -->
+
+    <script>
+        document.getElementById("btn").addEventListener("click", ()=>{
+            getElementById("pa").value;
+            console.log(nomPais);
+
+
+            let vurl= "https://restcountries.com/v3.1/name/${nompais}";
+
+            fetch(vurl)
+            .then(res=>res.json())
+            .then(dato=>{ console.log(dato)
+
+            })
+        })
+
+    </script>
+
+
+</body>
+</html>
