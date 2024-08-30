@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PETICIÓN GATITOS</title>
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a;
+            color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+ 
+        #button {
+            background-color: #ff6f61;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            color: #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+ 
+        #button:hover {
+            background-color: #ff3b2e;
+            box-shadow: 0px 15px 20px rgba(255, 107, 107, 0.3);
+            transform: translateY(-7px);
+        }
+ 
+        #resultado {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            text-align: center;
+            max-width: 600px;
+            line-height: 1.5;
+            background-color: #2c2c2c;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+</style>
+</head>
+<body>
+<div>
+<button id="button">Get a Cat Fact</button>
+<div id="resultado"></div>
+</div>
+ 
+    <script>
+        document.getElementById("button").addEventListener("click", function () {
+            fetch("https://catfact.ninja/fact")
+                .then(respuesta => respuesta.json())
+                .then(datoJson => { 
+                    document.getElementById("resultado").innerText = datoJson.fact;
+                    console.log(datoJson);
+                });
+        });
+</script>
+</body>
+</html>
