@@ -31,3 +31,5 @@ Gestión del tiempo: Priorizar tareas, manejar plazos y ser capaz de trabajar en
 Empatía: Comprender las necesidades y preocupaciones de los usuarios o clientes, lo que es fundamental para desarrollar soluciones que realmente satisfagan sus necesidades.
 
 Ética profesional: Ser responsable y mantener la integridad en el trabajo, especialmente en lo que respecta a la privacidad y la seguridad de la información.
+
+Autogestión: Ser capaz de organizarse, establecer metas y trabajar de manera independiente sin la necesidad de una supervisión constante.
