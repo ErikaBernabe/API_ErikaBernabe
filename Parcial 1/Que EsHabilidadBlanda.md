@@ -15,3 +15,19 @@ Las habilidades blandas son fundamentales porque es que en el entorno laboral ac
 
 ### ¿Cómo se desarrollan las habilidades blandas?
 Para desarrollar habilidades blandas, pues necesitas tiempo y práctica. Así que, reflexiona sobre tus interacciones diarias y busca retroalimentación de colegas o mentores. Además, participar en talleres o cursos específicos puede ser muy útil. Aunque no es fácil, mejorar estas habilidades te permitirá avanzar tanto en tu vida profesional como personal.
+
+Comunicación efectiva: Poder expresar ideas técnicas de manera clara tanto a colegas como a personas no técnicas. Esto incluye la habilidad de escuchar activamente y dar retroalimentación constructiva.
+
+Trabajo en equipo: Colaborar de manera efectiva con otros, ya sea en proyectos de desarrollo de software, administración de redes o gestión de bases de datos. El trabajo en equipo es esencial, pues muchos proyectos requieren la cooperación de varios expertos.
+
+Resolución de problemas: Enfrentar y solucionar problemas de manera eficiente. En sistemas computacionales, los problemas pueden surgir en cualquier momento, así que la capacidad para abordarlos con calma y creatividad es clave.
+
+Adaptabilidad: La tecnología cambia rápidamente, o sea, es importante poder adaptarse a nuevas herramientas, lenguajes de programación y metodologías.
+
+Pensamiento crítico: Evaluar situaciones, analizar opciones y tomar decisiones informadas. Esto es especialmente relevante cuando se diseñan sistemas o se solucionan problemas complejos.
+
+Gestión del tiempo: Priorizar tareas, manejar plazos y ser capaz de trabajar en múltiples proyectos simultáneamente.
+
+Empatía: Comprender las necesidades y preocupaciones de los usuarios o clientes, lo que es fundamental para desarrollar soluciones que realmente satisfagan sus necesidades.
+
+Ética profesional: Ser responsable y mantener la integridad en el trabajo, especialmente en lo que respecta a la privacidad y la seguridad de la información.
