@@ -32,4 +32,4 @@ Empatía: Comprender las necesidades y preocupaciones de los usuarios o clientes
 
 Ética profesional: Ser responsable y mantener la integridad en el trabajo, especialmente en lo que respecta a la privacidad y la seguridad de la información.
 
-Autogestión: Ser capaz de organizarse, establecer metas y trabajar de manera independiente sin la necesidad de una supervisión constante.
+Autogestión: Ser capaz de organizarse, establecer metas y trabajar de manera independiente sin la necesidad de una supervisión constante .
