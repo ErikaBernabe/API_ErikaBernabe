@@ -59,6 +59,78 @@ try {
     }
     });
 
+
+
+    //DELET
+    app.delete('/usuario', async (req, res) => {
+      const idUsuario = req.query.Id_Usuario;  // Obtiene el parámetro de la URL
+  
+      if (!idUsuario) {
+          return res.status(400).json({ error: 'Id_Usuario es requerido' });
+      }
+  
+      try {
+          // Verificar si el usuario existe antes de eliminar
+          const [checkResults] = await connection.execute(
+              'SELECT * FROM usuarios WHERE Id_Usuario = ?',
+              [idUsuario]
+          );
+  
+          if (checkResults.length === 0) {
+              return res.status(404).json({ error: 'Usuario no encontrado' });
+          }
+  
+          // Ejecutar la eliminación del usuario
+          const [deleteResults] = await connection.execute(
+              'DELETE FROM usuarios WHERE Id_Usuario = ?',
+              [idUsuario]
+          );
+  
+          if (deleteResults.affectedRows > 0) {
+              return res.json({ message: 'Usuario eliminado exitosamente' });
+          } else {
+              return res.status(500).json({ error: 'Error al eliminar el usuario' });
+          }
+      } catch (err) {
+          console.error('Error en la consulta:', err);
+          return res.status(500).json({ error: 'Error interno del servidor' });
+      }
+  });
+
+  //POST 
+  app.post('/usuario', async (req, res) => {
+    const { nombre, apellido_paterno, apellido_materno, correo_electronico, nombre_de_usuario, contraseña, rol } = req.body;  // Obtener los datos enviados en el cuerpo de la solicitud
+
+    // Verificar que se envíen todos los campos requeridos
+    if (!nombre || !apellido_paterno || !apellido_materno || !correo_electronico || !nombre_de_usuario || !contraseña || !rol) {
+        return res.status(400).json({ error: 'Todos los campos son requeridos' });
+    }
+
+    try {
+        // Insertar un nuevo usuario en la base de datos
+        const [result] = await connection.execute(
+            'INSERT INTO usuarios (Nombre, Apellido_Paterno, Apellido_Materno, Correo_Electronico, Nombre_de_Usuario, Contraseña, Rol) VALUES (?, ?, ?, ?, ?, ?, ?)',
+            [nombre, apellido_paterno, apellido_materno, correo_electronico, nombre_de_usuario, contraseña, rol]
+        );
+
+        // Comprobar si la inserción fue exitosa
+        if (result.affectedRows > 0) {
+            return res.status(201).json({ message: 'Usuario creado exitosamente', id: result.insertId });
+        } else {
+            return res.status(500).json({ error: 'Error al crear el usuario' });
+        }
+    } catch (err) {
+        console.error('Error en la consulta:', err);
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
+
+
+
+
+
+
+
     app.listen(3000, () => {
     console.log('Server Express escuchando en puerto 3000');
     });
