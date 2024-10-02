@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../BernabeErikaYazmin"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "API_ErikaBernabe"
+	}
+}

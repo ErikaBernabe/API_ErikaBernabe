@@ -34,71 +34,108 @@ try {
     app.use(upload.none());                         // Middleware para parsear form-data
     app.use(bodyParser.xml());                      // Parseador de XML
 
-    // Ruta para obtener el usuario por Id_Usuario
-    app.get('/usuario', async (req, res) => {
-      const idUsuario = req.query.Id_Usuario;  // Obtiene el parámetro de la URL
+    // // Ruta para obtener el usuario por Id_Usuario
+    // app.get('/usuario', async (req, res) => {
+    //   const idUsuario = req.query.Id_Usuario;  // Obtiene el parámetro de la URL
 
-    if (!idUsuario) {
-        return res.status(400).json({ error: 'Id_Usuario es requerido' });
-    }
+    // // if (!idUsuario) {
+    // //     // return res.status(400).json({ error: 'Id_Usuario es requerido' });
+    // //     consulta = 'SELECT * FROM usuarios';
+ 
+    // // }
 
-    try {
-        const [results, fields] = await connection.execute(
-          'SELECT * FROM usuarios WHERE Id_Usuario = ?',
-          [idUsuario]  // Parámetro de la consulta
-        );
+    //       // Si no se proporciona un ID, obtener todos los usuarios
+    //     if (!idUsuario) {
+    //         consulta = 'SELECT * FROM usuarios';
+    //     } else {
+    //         consulta = 'SELECT * FROM usuarios WHERE Id_Usuario = ?';
+    //         parametros = [idUsuario];
+    //     }
+
+    // try {
+    //     const [results, fields] = await connection.execute(
+    //       'SELECT * FROM usuarios WHERE Id_Usuario = ?',
+    //       [idUsuario]  // Parámetro de la consulta
+    //     );
+
+    //     if (results.length > 0) {
+    //       return res.json(results[0]);  // Devuelve solo el primer resultado
+    //     } else {
+    //     return res.status(404).json({ error: 'Usuario no encontrado' });
+    //     }
+    // } catch (err) {
+    //     console.error('Error en la consulta:', err);
+    //     return res.status(500).json({ error: 'Error interno del servidor' });
+    // }
+    // });
+     // Ruta para obtener el usuario por Id_Usuario o todos si no se pasa ID
+     app.get('/usuario', async (req, res) => {
+        const idUsuario = req.query.Id_Usuario;  // Obtiene el parámetro de la URL
+   
+        let consulta = '';
+        let parametros = [];
+   
+        // Si no se proporciona un ID, obtener todos los usuarios
+        if (!idUsuario) {
+          consulta = 'SELECT * FROM usuarios';
+        } else {
+          consulta = 'SELECT * FROM usuarios WHERE Id_Usuario = ?';
+          parametros = [idUsuario];
+        }
+   
+        try {
+          const [results, fields] = await connection.execute(consulta, parametros);
 
         if (results.length > 0) {
-          return res.json(results[0]);  // Devuelve solo el primer resultado
+            return res.json(results);
         } else {
-        return res.status(404).json({ error: 'Usuario no encontrado' });
+            return res.status(404).json({ error: 'Usuario no encontrado' });
         }
-    } catch (err) {
-        console.error('Error en la consulta:', err);
-        return res.status(500).json({ error: 'Error interno del servidor' });
-    }
+        } catch (err) {
+        console.error('Error en la consulta SQL:', err);
+        return res.status(500).json({ error: 'Error al ejecutar la consulta en la base de datos' });
+        }
     });
-
 
 
     //DELET
     app.delete('/usuario', async (req, res) => {
       const idUsuario = req.query.Id_Usuario;  // Obtiene el parámetro de la URL
-  
-      if (!idUsuario) {
-          return res.status(400).json({ error: 'Id_Usuario es requerido' });
-      }
-  
-      try {
+    
+    if (!idUsuario) {
+        return res.status(400).json({ error: 'Id_Usuario es requerido' });
+    }
+
+    try {
           // Verificar si el usuario existe antes de eliminar
-          const [checkResults] = await connection.execute(
+        const [checkResults] = await connection.execute(
               'SELECT * FROM usuarios WHERE Id_Usuario = ?',
-              [idUsuario]
-          );
-  
-          if (checkResults.length === 0) {
-              return res.status(404).json({ error: 'Usuario no encontrado' });
-          }
-  
+            [idUsuario]
+        );
+
+        if (checkResults.length === 0) {
+            return res.status(404).json({ error: 'Usuario no encontrado' });
+        }
+
           // Ejecutar la eliminación del usuario
-          const [deleteResults] = await connection.execute(
-              'DELETE FROM usuarios WHERE Id_Usuario = ?',
-              [idUsuario]
-          );
-  
-          if (deleteResults.affectedRows > 0) {
-              return res.json({ message: 'Usuario eliminado exitosamente' });
-          } else {
-              return res.status(500).json({ error: 'Error al eliminar el usuario' });
-          }
-      } catch (err) {
-          console.error('Error en la consulta:', err);
-          return res.status(500).json({ error: 'Error interno del servidor' });
-      }
-  });
+        const [deleteResults] = await connection.execute(
+            'DELETE FROM usuarios WHERE Id_Usuario = ?',
+            [idUsuario]
+        );
+
+        if (deleteResults.affectedRows > 0) {
+            return res.json({ message: 'Usuario eliminado exitosamente' });
+        } else {
+            return res.status(500).json({ error: 'Error al eliminar el usuario' });
+        }
+    } catch (err) {
+        console.error('Error en la consulta:', err);
+        return res.status(500).json({ error: 'Error interno del servidor' });
+    }
+});
 
   //POST 
-  app.post('/usuario', async (req, res) => {
+    app.post('/usuario', async (req, res) => {
     const { nombre, apellido_paterno, apellido_materno, correo_electronico, nombre_de_usuario, contraseña, rol } = req.body;  // Obtener los datos enviados en el cuerpo de la solicitud
 
     // Verificar que se envíen todos los campos requeridos
