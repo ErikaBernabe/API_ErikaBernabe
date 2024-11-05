@@ -1,18 +1,26 @@
 const express = require('express');
+const { query, validationResult } = require('express-validator'); 
 const app = express();
-// const cors = require('cors')
+ 
+const cors = require('cors');
+app.use(cors());
+ 
+app.get(
+    '/',
+    query('id').isInt().withMessage('El ID debe ser un número entero'),
+    (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            
+            return res.status(400).json({ errors: errors.array() });
+        }
+        res.send('Server Express contestando a petición GET');
+    }
+);
 
-// app.use(cors())
 
-app.get('/',(req,res)=>{
-    res.json('Server Express contestando a peticion get')
-})
+app.listen(3000, () => {
+    console.log('Server Express escuchando en el puerto 3000');
+});
 
-app.post('/',(req,res)=>{
-    res.json('Server Express contestando a peticion post')
-})
-
-app.listen(3001,()=>{
-    console.json('Server Express escuchando en el puerto 3001')
-})
 
