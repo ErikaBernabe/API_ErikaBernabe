@@ -1,4 +1,4 @@
-import * as areas  from "./areas.js";
+import * as areas  from "./areas";
 
 let res = areas.areaCuadrado(2);
 
