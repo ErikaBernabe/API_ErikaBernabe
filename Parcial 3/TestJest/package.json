@@ -11,12 +11,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "chai": "^5.1.2",
     "test": "^3.3.0"
   },
-  "type": "module",
   "devDependencies": {
     "jest": "^29.7.0"
   }
